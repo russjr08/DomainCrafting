@@ -18,7 +18,7 @@ public class DomainCrafting extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        getLogger().info("DomainCrafting is starting up!");
+        getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger()), this);
 
         addRecipes();

@@ -45,11 +45,14 @@ public class DomainCrafting extends JavaPlugin {
         ShapelessRecipe cobwebRecipe = new ShapelessRecipe(new NamespacedKey(this, "cobwebs"),
                 new ItemStack(Material.COBWEB)).addIngredient(9, Material.STRING);
 
+        ShapelessRecipe saddleToLeather = new ShapelessRecipe(new NamespacedKey(this, "saddle_to_leather"),
+                new ItemStack(Material.LEATHER, 4)).addIngredient(Material.SADDLE);
 
 
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
+        getServer().addRecipe(saddleToLeather);
 
         constructMusicRecipes();
 

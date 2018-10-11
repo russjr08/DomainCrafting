@@ -27,7 +27,7 @@ def getDate() {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.2_" + getDate()
+version "1.21_" + getDate()
 
 repositories {
     spigot()

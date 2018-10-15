@@ -42,7 +42,7 @@ public class PlayerListener implements Listener {
 
                         Damageable itemMeta = (Damageable) event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
 
-                        itemMeta.setDamage(itemMeta.getDamage() + 10);
+                        itemMeta.setDamage(itemMeta.getDamage() + 5);
 
                         // Check to see if the player's pickaxe will be past the max durability, and delete it if so.
                         if (itemMeta.getDamage() > event.getPlayer().getInventory().getItemInMainHand().getType().getMaxDurability()) {

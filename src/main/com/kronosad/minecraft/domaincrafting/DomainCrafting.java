@@ -48,11 +48,18 @@ public class DomainCrafting extends JavaPlugin {
         ShapelessRecipe saddleToLeather = new ShapelessRecipe(new NamespacedKey(this, "saddle_to_leather"),
                 new ItemStack(Material.LEATHER, 4)).addIngredient(Material.SADDLE);
 
+        ShapedRecipe bellRecipe = new ShapedRecipe(new NamespacedKey(this, "bell"), new ItemStack(Material.BELL));
+
+
+        bellRecipe.shape("sss", "sgs", "sns");
+        bellRecipe.setIngredient('s', Material.STICK).setIngredient('n', Material.GOLD_NUGGET).setIngredient('g', Material.GOLD_BLOCK);
+
 
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
         getServer().addRecipe(saddleToLeather);
+        getServer().addRecipe(bellRecipe);
 
         constructMusicRecipes();
 
@@ -62,10 +69,10 @@ public class DomainCrafting extends JavaPlugin {
     private void constructMusicRecipes() {
 
         HashMap<Material, Material> listOfDiscRecipes = new HashMap<>();
-        listOfDiscRecipes.put(Material.DANDELION_YELLOW, Material.MUSIC_DISC_13);
-        listOfDiscRecipes.put(Material.CACTUS_GREEN, Material.MUSIC_DISC_CAT);
+        listOfDiscRecipes.put(Material.YELLOW_DYE, Material.MUSIC_DISC_13);
+        listOfDiscRecipes.put(Material.GREEN_DYE, Material.MUSIC_DISC_CAT);
         listOfDiscRecipes.put(Material.ORANGE_DYE, Material.MUSIC_DISC_BLOCKS);
-        listOfDiscRecipes.put(Material.ROSE_RED, Material.MUSIC_DISC_CHIRP);
+        listOfDiscRecipes.put(Material.RED_DYE, Material.MUSIC_DISC_CHIRP);
         listOfDiscRecipes.put(Material.LIME_DYE, Material.MUSIC_DISC_FAR);
         listOfDiscRecipes.put(Material.MAGENTA_DYE, Material.MUSIC_DISC_MALL);
         listOfDiscRecipes.put(Material.PURPLE_DYE, Material.MUSIC_DISC_MELLOHI);

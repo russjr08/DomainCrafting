@@ -27,7 +27,7 @@ def getDate() {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.21_" + getDate()
+version "1.3_" + getDate()
 
 repositories {
     spigot()
@@ -39,7 +39,7 @@ dependencies {
 
 bukkit {
 
-    version = "1.13.1"
+    version = "1.14"
 
     meta {
         name = "DomainCrafting"

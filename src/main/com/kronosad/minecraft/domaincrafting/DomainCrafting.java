@@ -54,12 +54,18 @@ public class DomainCrafting extends JavaPlugin {
         bellRecipe.shape("sss", "sgs", "sns");
         bellRecipe.setIngredient('s', Material.STICK).setIngredient('n', Material.GOLD_NUGGET).setIngredient('g', Material.GOLD_BLOCK);
 
+        ShapedRecipe tridentRecipe = new ShapedRecipe(new NamespacedKey(this, "trident"), new ItemStack(Material.TRIDENT));
+
+        tridentRecipe.shape("ddd", " s ", " s ");
+        tridentRecipe.setIngredient('d', Material.DIAMOND_SWORD);
+        tridentRecipe.setIngredient('s', Material.STICK);
 
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
         getServer().addRecipe(saddleToLeather);
         getServer().addRecipe(bellRecipe);
+        getServer().addRecipe(tridentRecipe);
 
         constructMusicRecipes();
 

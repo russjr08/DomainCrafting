@@ -131,3 +131,5 @@ gradle-app.setting
 local.properties
 BuildTools.log.txt
 \.idea/runConfigurations/
+
+.idea/

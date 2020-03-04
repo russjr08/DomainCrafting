@@ -32,7 +32,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerBlockInteract(PlayerInteractEvent event) {
 
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType() == Material.STONE_SLAB) {
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType() == Material.SMOOTH_STONE_SLAB) {
             if(((Slab) event.getClickedBlock().getBlockData()).getType() == Slab.Type.DOUBLE) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType().toString().toLowerCase().contains("pickaxe")) {
                     event.getClickedBlock().setType(Material.SMOOTH_STONE);
@@ -62,7 +62,7 @@ public class PlayerListener implements Listener {
         if(event.getBlock().getType() == Material.SMOOTH_STONE && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             if(!event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)) {
                 event.setDropItems(false);
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.STONE_SLAB, 2));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SMOOTH_STONE_SLAB, 2));
             }
         }
     }

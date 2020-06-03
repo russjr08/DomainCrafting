@@ -1,9 +1,8 @@
 package com.kronosad.minecraft.domaincrafting.listeners;
 
-import org.bukkit.Effect;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.Beacon;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
@@ -11,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -84,6 +85,20 @@ public class PlayerListener implements Listener {
                     ItemMeta meta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
                     ((Damageable) meta).setDamage(((Damageable)meta).getDamage() + 5);
                     event.getPlayer().getInventory().getItemInMainHand().setItemMeta(meta);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void inventoryCloseEvent(InventoryCloseEvent event) {
+        if(event.getInventory().getType() == InventoryType.BEACON) {
+            Block lookingAt = event.getPlayer().getTargetBlock(null, 10);
+            if(lookingAt.getState() instanceof Beacon) {
+                Beacon beacon = (Beacon) lookingAt.getState();
+                if(beacon.getPrimaryEffect() != null || beacon.getSecondaryEffect() != null) {
+                    event.getPlayer().sendMessage(ChatColor.GOLD.toString() + ChatColor.ITALIC + "You've been protected by an ancient artifact.");
+                    event.getPlayer().playEffect(EntityEffect.TOTEM_RESURRECT);
                 }
             }
         }

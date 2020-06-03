@@ -27,7 +27,7 @@ static def getDate() {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.3_" + getDate()
+version "1.4_" + getDate()
 
 repositories {
 }

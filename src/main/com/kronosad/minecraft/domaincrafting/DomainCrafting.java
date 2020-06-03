@@ -1,5 +1,6 @@
 package com.kronosad.minecraft.domaincrafting;
 
+import com.kronosad.minecraft.domaincrafting.listeners.EntityListener;
 import com.kronosad.minecraft.domaincrafting.listeners.PlayerListener;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -20,7 +21,7 @@ public class DomainCrafting extends JavaPlugin {
 
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger()), this);
-
+        getServer().getPluginManager().registerEvents(new EntityListener(getLogger()), this);
         addRecipes();
     }
 

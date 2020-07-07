@@ -38,7 +38,7 @@ public class EntityListener implements Listener {
         }
 
         if(event.getTarget() != null && (event.getTarget().getWorld().getEnvironment() != World.Environment.NORMAL
-                || event.getTarget().getWorld().getEnvironment() != World.Environment.NETHER)) {
+                && event.getTarget().getWorld().getEnvironment() != World.Environment.NETHER)) {
             return; // Stop checking conditions and proceed as normal
         }
 

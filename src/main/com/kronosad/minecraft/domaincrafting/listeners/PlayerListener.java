@@ -14,9 +14,14 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import java.util.logging.Logger;
 
@@ -106,6 +111,19 @@ public class PlayerListener implements Listener {
                         event.getPlayer().playEffect(EntityEffect.SHIELD_BREAK);
                     }
 
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void potionConsumeEvent(PlayerItemConsumeEvent event) {
+        if(event.getItem().getType() == Material.POTION) {
+            if(event.getItem().getItemMeta() instanceof PotionMeta) {
+                final PotionMeta pm = (PotionMeta) event.getItem().getItemMeta();
+                if(pm.getBasePotionData().getType() == PotionType.AWKWARD) {
+                    event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 2400,
+                            5, true, true));
                 }
             }
         }

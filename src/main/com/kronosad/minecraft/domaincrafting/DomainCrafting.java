@@ -2,6 +2,7 @@ package com.kronosad.minecraft.domaincrafting;
 
 import com.kronosad.minecraft.domaincrafting.listeners.EntityListener;
 import com.kronosad.minecraft.domaincrafting.listeners.PlayerListener;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.FurnaceRecipe;
@@ -11,8 +12,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DomainCrafting extends JavaPlugin {
 
@@ -32,30 +32,33 @@ public class DomainCrafting extends JavaPlugin {
 
         getLogger().info("Registering String to Wool recipe...");
         getServer().addRecipe(new ShapelessRecipe(new NamespacedKey(this, "string_to_wool"),
-                new ItemStack(Material.WHITE_WOOL, 1)).addIngredient(4, Material.STRING));
+                applyWatermarkToItem(new ItemStack(Material.WHITE_WOOL, 1))).addIngredient(4, Material.STRING));
 
         getLogger().info("Constructing Nametag recipe...");
         ItemStack nametag = new ItemStack(Material.NAME_TAG, 1);
-        ItemMeta nametagMeta = nametag.getItemMeta();
-        nametagMeta.setDisplayName("Forged Nametag");
-        nametag.setItemMeta(nametagMeta);
+        if(nametag.getItemMeta() != null) {
+            ItemMeta nametagMeta = nametag.getItemMeta();
+            nametagMeta.setDisplayName("Forged Nametag");
+            nametag.setItemMeta(nametagMeta);
+        }
+        applyWatermarkToItem(nametag);
         ShapelessRecipe nametagRecipe = new ShapelessRecipe(new NamespacedKey(this, "nametag"),
                 nametag).addIngredient(3, Material.PAPER).addIngredient(Material.IRON_INGOT);
 
 
         ShapelessRecipe cobwebRecipe = new ShapelessRecipe(new NamespacedKey(this, "cobwebs"),
-                new ItemStack(Material.COBWEB)).addIngredient(9, Material.STRING);
+                applyWatermarkToItem(new ItemStack(Material.COBWEB))).addIngredient(9, Material.STRING);
 
         ShapelessRecipe saddleToLeather = new ShapelessRecipe(new NamespacedKey(this, "saddle_to_leather"),
-                new ItemStack(Material.LEATHER, 4)).addIngredient(Material.SADDLE);
+                applyWatermarkToItem(new ItemStack(Material.LEATHER, 4))).addIngredient(Material.SADDLE);
 
-        ShapedRecipe bellRecipe = new ShapedRecipe(new NamespacedKey(this, "bell"), new ItemStack(Material.BELL));
+        ShapedRecipe bellRecipe = new ShapedRecipe(new NamespacedKey(this, "bell"), applyWatermarkToItem(new ItemStack(Material.BELL)));
 
 
         bellRecipe.shape("sss", "sgs", "sns");
         bellRecipe.setIngredient('s', Material.STICK).setIngredient('n', Material.GOLD_NUGGET).setIngredient('g', Material.GOLD_BLOCK);
 
-        ShapedRecipe tridentRecipe = new ShapedRecipe(new NamespacedKey(this, "trident"), new ItemStack(Material.TRIDENT));
+        ShapedRecipe tridentRecipe = new ShapedRecipe(new NamespacedKey(this, "trident"), applyWatermarkToItem(new ItemStack(Material.TRIDENT)));
 
         tridentRecipe.shape("ddd", " s ", " s ");
         tridentRecipe.setIngredient('d', Material.DIAMOND_SWORD);
@@ -71,6 +74,17 @@ public class DomainCrafting extends JavaPlugin {
         constructMusicRecipes();
 
 
+    }
+
+    private ItemStack applyWatermarkToItem(ItemStack item) {
+        List<String> watermark = Collections.singletonList(ChatColor.GOLD + "Forged with DomainCrafting");
+        if(item.getItemMeta() != null) {
+            ItemMeta itemMeta = item.getItemMeta();
+            itemMeta.setLore(watermark);
+            item.setItemMeta(itemMeta);
+        }
+
+        return item;
     }
 
     private void constructMusicRecipes() {
@@ -94,7 +108,7 @@ public class DomainCrafting extends JavaPlugin {
             Material dye = entry.getKey();
             Material disc = entry.getValue();
 
-            ShapedRecipe musicRecipe = new ShapedRecipe(new NamespacedKey(this, disc.toString()), new ItemStack(disc));
+            ShapedRecipe musicRecipe = new ShapedRecipe(new NamespacedKey(this, disc.toString()), applyWatermarkToItem(new ItemStack(disc)));
 
             musicRecipe.shape("wew", "ede", "wew").setIngredient('w', Material.OAK_PLANKS).setIngredient('e', Material.EMERALD).setIngredient('d', dye);
 

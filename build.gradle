@@ -27,7 +27,7 @@ static def getDate() {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.4.1_" + getDate()
+version "1.4.2_" + getDate()
 
 repositories {
 }
@@ -38,7 +38,7 @@ dependencies {
 
 bukkit {
 
-    version = "1.15.2"
+    version = "1.16.1"
 
     meta {
         name = "DomainCrafting"

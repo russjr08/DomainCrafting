@@ -97,7 +97,8 @@ public class PlayerListener implements Listener {
             if(lookingAt.getState() instanceof Beacon) {
                 Beacon beacon = (Beacon) lookingAt.getState();
                 if(beacon.getPrimaryEffect() != null || beacon.getSecondaryEffect() != null) {
-                    if(event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL) {
+                    if(event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL
+                            || event.getPlayer().getWorld().getEnvironment() == World.Environment.NETHER) {
                         event.getPlayer().sendMessage(ChatColor.GOLD.toString() + ChatColor.ITALIC + "You've been protected by an ancient artifact.");
                         event.getPlayer().playEffect(EntityEffect.TOTEM_RESURRECT);
                     } else {

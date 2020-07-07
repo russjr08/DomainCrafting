@@ -3,6 +3,7 @@ package com.kronosad.minecraft.domaincrafting.listeners;
 import com.google.common.collect.Lists;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,7 +33,12 @@ public class EntityListener implements Listener {
         List<EntityType> blacklistedEnemyTypes = Lists.newArrayList(EntityType.WITHER, EntityType.ENDER_DRAGON,
                 EntityType.ELDER_GUARDIAN);
 
-        if(event.getTarget() != null && event.getTarget().getWorld().getEnvironment() != World.Environment.NORMAL) {
+        if(!(event.getEntity() instanceof Monster)) {
+            return; // Needs to be a monster; If it is applied across all enemies, it breaks leads.
+        }
+
+        if(event.getTarget() != null && (event.getTarget().getWorld().getEnvironment() != World.Environment.NORMAL
+                || event.getTarget().getWorld().getEnvironment() != World.Environment.NETHER)) {
             return; // Stop checking conditions and proceed as normal
         }
 

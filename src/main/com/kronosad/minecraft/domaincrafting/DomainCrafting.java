@@ -12,7 +12,10 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DomainCrafting extends JavaPlugin {
 
@@ -30,11 +33,10 @@ public class DomainCrafting extends JavaPlugin {
 
         // Construct and build recipes
 
-        getLogger().info("Registering String to Wool recipe...");
+        getLogger().info("Registering DomainCrafting Recipes...");
         getServer().addRecipe(new ShapelessRecipe(new NamespacedKey(this, "string_to_wool"),
                 applyWatermarkToItem(new ItemStack(Material.WHITE_WOOL, 1))).addIngredient(4, Material.STRING));
 
-        getLogger().info("Constructing Nametag recipe...");
         ItemStack nametag = new ItemStack(Material.NAME_TAG, 1);
         if(nametag.getItemMeta() != null) {
             ItemMeta nametagMeta = nametag.getItemMeta();
@@ -64,14 +66,27 @@ public class DomainCrafting extends JavaPlugin {
         tridentRecipe.setIngredient('d', Material.DIAMOND_SWORD);
         tridentRecipe.setIngredient('s', Material.STICK);
 
+        ShapedRecipe saddleRecipe = new ShapedRecipe(new NamespacedKey(this, "saddle"), applyWatermarkToItem(new ItemStack(Material.SADDLE)));
+
+        saddleRecipe.shape("l l", "l l", "lll");
+        saddleRecipe.setIngredient('l', Material.LEATHER);
+
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
         getServer().addRecipe(saddleToLeather);
         getServer().addRecipe(bellRecipe);
         getServer().addRecipe(tridentRecipe);
+        getServer().addRecipe(saddleRecipe);
+        getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.PUFFERFISH, Material.PUFFERFISH_BUCKET));
 
         constructMusicRecipes();
+
+        getLogger().info("🚧 Recipe construction complete!");
+
 
 
     }
@@ -85,6 +100,17 @@ public class DomainCrafting extends JavaPlugin {
         }
 
         return item;
+    }
+
+    private ShapelessRecipe getFishInBucketRecipe(Material fishType, Material output) {
+        ShapelessRecipe fishRecipe = new ShapelessRecipe(new NamespacedKey(this, fishType.name() + "Bucket"), applyWatermarkToItem(new ItemStack(output)));
+        fishRecipe.addIngredient(Material.WATER_BUCKET);
+        fishRecipe.addIngredient(Material.GLISTERING_MELON_SLICE);
+        fishRecipe.addIngredient(fishType);
+
+        getLogger().info(String.format("Constructed %s => %s recipe", fishType.name(), output.name()));
+
+        return fishRecipe;
     }
 
     private void constructMusicRecipes() {

@@ -1,11 +1,13 @@
 package com.kronosad.minecraft.domaincrafting.listeners;
 
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.block.Beacon;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -104,10 +106,18 @@ public class PlayerListener implements Listener {
                 if(beacon.getPrimaryEffect() != null || beacon.getSecondaryEffect() != null) {
                     if(event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL
                             || event.getPlayer().getWorld().getEnvironment() == World.Environment.NETHER) {
-                        event.getPlayer().sendMessage(ChatColor.GOLD.toString() + ChatColor.ITALIC + "You've been protected by an ancient artifact.");
+                        TextComponent message = new TextComponent("You've been protected by an ancient artifact.");
+                        message.setItalic(true);
+                        message.setColor(ChatColor.GOLD.asBungee());
+                        Player player = (Player) event.getPlayer();
+                        player.sendActionBar(message);
                         event.getPlayer().playEffect(EntityEffect.TOTEM_RESURRECT);
                     } else {
-                        event.getPlayer().sendMessage(ChatColor.DARK_RED.toString() + ChatColor.ITALIC + "You do not feel the same sense of protection in this dimension");
+                        TextComponent message = new TextComponent("You do not feel the same sense of protection in this dimension.");
+                        message.setItalic(true);
+                        message.setColor(ChatColor.DARK_RED.asBungee());
+                        Player player = (Player) event.getPlayer();
+                        player.sendActionBar(message);
                         event.getPlayer().playEffect(EntityEffect.SHIELD_BREAK);
                     }
 

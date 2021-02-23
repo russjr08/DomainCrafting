@@ -133,3 +133,11 @@ BuildTools.log.txt
 \.idea/runConfigurations/
 
 .idea/
+
+bin/
+.settings/
+
+# Visual Studio Code
+*.code-workspace
+.project
+.classpath

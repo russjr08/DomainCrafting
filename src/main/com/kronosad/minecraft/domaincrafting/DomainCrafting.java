@@ -123,10 +123,10 @@ public class DomainCrafting extends JavaPlugin {
         listOfDiscRecipes.put(Material.LIME_DYE, Material.MUSIC_DISC_FAR);
         listOfDiscRecipes.put(Material.MAGENTA_DYE, Material.MUSIC_DISC_MALL);
         listOfDiscRecipes.put(Material.PURPLE_DYE, Material.MUSIC_DISC_MELLOHI);
-        listOfDiscRecipes.put(Material.INK_SAC, Material.MUSIC_DISC_STAL);
-        listOfDiscRecipes.put(Material.BONE_MEAL, Material.MUSIC_DISC_STRAD);
+        listOfDiscRecipes.put(Material.BLACK_DYE, Material.MUSIC_DISC_STAL);
+        listOfDiscRecipes.put(Material.WHITE_DYE, Material.MUSIC_DISC_STRAD);
         listOfDiscRecipes.put(Material.CYAN_DYE, Material.MUSIC_DISC_WARD);
-        listOfDiscRecipes.put(Material.LAPIS_LAZULI, Material.MUSIC_DISC_WAIT);
+        listOfDiscRecipes.put(Material.BLUE_DYE, Material.MUSIC_DISC_WAIT);
 
 
 

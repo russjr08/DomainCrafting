@@ -1,0 +1,24 @@
+image:openjdk:11
+
+stages:
+  - build
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+build:
+  stage: build
+  script:
+  - ./gradlew jar
+  artifacts:
+      paths:
+        - build/libs/*.jar
+      expire_in: 1 week
+
+after_script:
+  - echo "End of Pipeline"

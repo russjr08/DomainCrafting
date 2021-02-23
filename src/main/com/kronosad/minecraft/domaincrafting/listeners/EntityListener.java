@@ -20,10 +20,7 @@ import java.util.logging.Logger;
 
 public class EntityListener implements Listener {
 
-    private Logger logger;
-
     public EntityListener(Logger logger) {
-        this.logger = logger;
         logger.info("Registered Entity Listener!");
     }
 

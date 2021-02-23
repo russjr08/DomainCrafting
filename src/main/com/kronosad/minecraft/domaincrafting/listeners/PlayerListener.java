@@ -29,11 +29,7 @@ import java.util.logging.Logger;
 
 public class PlayerListener implements Listener {
 
-    private Logger logger;
-
     public PlayerListener(Logger logger) {
-        this.logger = logger;
-
         logger.info("Player Listener Registered!");
     }
 
@@ -46,21 +42,52 @@ public class PlayerListener implements Listener {
                     event.getClickedBlock().setType(Material.SMOOTH_STONE);
                     event.getClickedBlock().getWorld().playEffect(event.getClickedBlock().getLocation(), Effect.STEP_SOUND, 17);
 
-                    if(event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-
-                        Damageable itemMeta = (Damageable) event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
-
-                        itemMeta.setDamage(itemMeta.getDamage() + 5);
-
-                        // Check to see if the player's pickaxe will be past the max durability, and delete it if so.
-                        if (itemMeta.getDamage() > event.getPlayer().getInventory().getItemInMainHand().getType().getMaxDurability()) {
-                            event.getPlayer().getInventory().getItemInMainHand().setAmount(0);
-                            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_ITEM_BREAK, 1F, 1F);
-                        } else {
-                            event.getPlayer().getInventory().getItemInMainHand().setItemMeta((ItemMeta) itemMeta);
-                        }
-                    }
+                    damageHeldItem(event.getPlayer());
                 }
+            }
+        }
+
+        // In-World Smelting Recipes
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getPlayer().getInventory().getItemInMainHand().getType() == Material.FLINT_AND_STEEL) {
+            if(event.getClickedBlock().getType() == Material.COBBLESTONE) {
+                event.getClickedBlock().setType(Material.STONE);
+                damageHeldItem(event.getPlayer());
+                event.getClickedBlock().getWorld().playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 10F, 1F);
+                event.setCancelled(true);
+            } else if (event.getClickedBlock().getType() == Material.SAND || event.getClickedBlock().getType() == Material.RED_SAND) {
+                event.getClickedBlock().setType(Material.GLASS);
+                damageHeldItem(event.getPlayer());
+                event.getClickedBlock().getWorld().playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 10F, 1F);
+                event.setCancelled(true);
+            }
+
+        }
+
+        // In-World Shearing Glass <-> Glass Pane <-> Glass
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getPlayer().getInventory().getItemInMainHand().getType() == Material.SHEARS) {
+            if(event.getClickedBlock().getType() == Material.GLASS) {
+                event.getClickedBlock().setType(Material.GLASS_PANE);
+                event.getClickedBlock().getState().update(true, true);
+                damageHeldItem(event.getPlayer());
+                event.getClickedBlock().getWorld().playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_GLASS_BREAK, 10F, 1F);
+            }
+        }
+
+    }
+
+    private void damageHeldItem(Player player) {
+        if(player.getGameMode() != GameMode.CREATIVE) {
+
+            Damageable itemMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
+
+            itemMeta.setDamage(itemMeta.getDamage() + 5);
+
+            // Check to see if the player's pickaxe will be past the max durability, and delete it if so.
+            if (itemMeta.getDamage() > player.getInventory().getItemInMainHand().getType().getMaxDurability()) {
+                player.getInventory().getItemInMainHand().setAmount(0);
+                player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1F, 1F);
+            } else {
+                player.getInventory().getItemInMainHand().setItemMeta((ItemMeta) itemMeta);
             }
         }
     }
@@ -82,8 +109,8 @@ public class PlayerListener implements Listener {
             if(event.getRightClicked() instanceof ArmorStand) {
                 ArmorStand stand = (ArmorStand) event.getRightClicked();
 
-                if(stand.getChestplate() != null && stand.getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
-                    stand.setChestplate(null);
+                if(stand.getEquipment().getChestplate() != null && stand.getEquipment().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
+                    stand.getEquipment().setChestplate(null);
                     stand.getWorld().dropItemNaturally(stand.getLocation(), new ItemStack(Material.SADDLE));
                     event.getPlayer().playSound(stand.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1F, 1F);
                 }

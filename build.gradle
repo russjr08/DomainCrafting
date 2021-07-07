@@ -6,7 +6,7 @@
  */
 
 plugins {
-    id "ru.endlesscode.bukkitgradle" version "0.8.2"
+    id "ru.endlesscode.bukkitgradle" version "0.9.2"
 }
 
 
@@ -27,29 +27,31 @@ static def getDate() {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.5_" + getDate()
+version "1.5.3_" + getDate()
 
 repositories {
+    spigot()
 }
 
 dependencies {
-    compileOnly bukkit()
+    compileOnly(paperApi())
 }
 
 bukkit {
 
-    version = "1.16.1"
+    apiVersion = "1.16.5"
 
     meta {
-        name = "DomainCrafting"
-        description = "Custom Crafting for DomainCraft"
-        authors = ["russjr08"]
+        name.set("DomainCrafting")
+        main.set("com.kronosad.minecraft.domaincrafting.DomainCrafting")
+        description.set("Custom Crafting for DomainCraft")
+        authors.set(["russjr08"])
 
     }
 
-    run {
+    server {
         // Core type. It can be 'spigot' or 'paper'
-        core = "spigot"
+        core = "paper"
         // Accept EULA
         eula = true
         // Set online-mode flag
@@ -59,8 +61,8 @@ bukkit {
         // Set server encoding (flag -Dfile.encoding)
         encoding = "UTF-8"
         // JVM arguments
-        javaArgs = "-Xmx1G"
+        javaArgs = ["-Xmx1G"]
         // Bukkit arguments
-        bukkitArgs = ""
+        bukkitArgs = ["nogui"]
     }
 }

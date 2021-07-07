@@ -12,7 +12,10 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DomainCrafting extends JavaPlugin {
 
@@ -30,11 +33,10 @@ public class DomainCrafting extends JavaPlugin {
 
         // Construct and build recipes
 
-        getLogger().info("Registering String to Wool recipe...");
+        getLogger().info("Registering DomainCrafting Recipes...");
         getServer().addRecipe(new ShapelessRecipe(new NamespacedKey(this, "string_to_wool"),
                 applyWatermarkToItem(new ItemStack(Material.WHITE_WOOL, 1))).addIngredient(4, Material.STRING));
 
-        getLogger().info("Constructing Nametag recipe...");
         ItemStack nametag = new ItemStack(Material.NAME_TAG, 1);
         if(nametag.getItemMeta() != null) {
             ItemMeta nametagMeta = nametag.getItemMeta();
@@ -64,14 +66,44 @@ public class DomainCrafting extends JavaPlugin {
         tridentRecipe.setIngredient('d', Material.DIAMOND_SWORD);
         tridentRecipe.setIngredient('s', Material.STICK);
 
+        ShapedRecipe saddleRecipe = new ShapedRecipe(new NamespacedKey(this, "saddle"), applyWatermarkToItem(new ItemStack(Material.SADDLE)));
+
+        saddleRecipe.shape("l l", "l l", "lll");
+        saddleRecipe.setIngredient('l', Material.LEATHER);
+
+        ShapelessRecipe pigBannerRecipe = new ShapelessRecipe(new NamespacedKey(this, "pigBanner"),
+         applyWatermarkToItem(new ItemStack(Material.PIGLIN_BANNER_PATTERN)))
+         .addIngredient(Material.MUSIC_DISC_PIGSTEP)
+         .addIngredient(Material.WHITE_BANNER);
+
+        ShapedRecipe totemOfUndyingRecipe = new ShapedRecipe(new NamespacedKey(this, "totemOfUndying"), applyWatermarkToItem(Material.TOTEM_OF_UNDYING));
+        totemOfUndyingRecipe.shape("ese", "sds", "gsg");
+        totemOfUndyingRecipe.setIngredient('e', Material.EMERALD);
+        totemOfUndyingRecipe.setIngredient('s', Material.SHIELD);
+        totemOfUndyingRecipe.setIngredient('d', Material.DIAMOND_BLOCK);
+        totemOfUndyingRecipe.setIngredient('g', Material.GOLD_INGOT);
+
+
+        addChainMailRecipes();
+
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
         getServer().addRecipe(saddleToLeather);
         getServer().addRecipe(bellRecipe);
         getServer().addRecipe(tridentRecipe);
+        getServer().addRecipe(saddleRecipe);
+        getServer().addRecipe(pigBannerRecipe);
+        getServer().addRecipe(totemOfUndyingRecipe);
+        getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.PUFFERFISH, Material.PUFFERFISH_BUCKET));
 
         constructMusicRecipes();
+
+        getLogger().info("🚧 Recipe construction complete!");
+
 
 
     }
@@ -87,6 +119,46 @@ public class DomainCrafting extends JavaPlugin {
         return item;
     }
 
+    private ItemStack applyWatermarkToItem(Material material) {
+        return applyWatermarkToItem(new ItemStack(material));
+    }
+
+    private ShapelessRecipe getFishInBucketRecipe(Material fishType, Material output) {
+        ShapelessRecipe fishRecipe = new ShapelessRecipe(new NamespacedKey(this, fishType.name() + "Bucket"), applyWatermarkToItem(new ItemStack(output)));
+        fishRecipe.addIngredient(Material.WATER_BUCKET);
+        fishRecipe.addIngredient(Material.GLISTERING_MELON_SLICE);
+        fishRecipe.addIngredient(fishType);
+
+        getLogger().info(String.format("Constructed %s => %s recipe", fishType.name(), output.name()));
+
+        return fishRecipe;
+    }
+
+    private void addChainMailRecipes() {
+        getLogger().info("Constructing chainmail armor recipes");
+
+        ShapedRecipe chainmailHelmet = new ShapedRecipe(new NamespacedKey(this, "chainmailHelmet"), applyWatermarkToItem(Material.CHAINMAIL_HELMET));
+        chainmailHelmet.shape("ccc", "c c");
+        chainmailHelmet.setIngredient('c', Material.CHAIN);
+
+        ShapedRecipe chainmailChest = new ShapedRecipe(new NamespacedKey(this, "chainmailChest"), applyWatermarkToItem(Material.CHAINMAIL_CHESTPLATE));
+        chainmailChest.shape("c c", "ccc", "ccc");
+        chainmailChest.setIngredient('c', Material.CHAIN);
+
+        ShapedRecipe chainmailLeggings = new ShapedRecipe(new NamespacedKey(this, "chainmailLeggings"), applyWatermarkToItem(Material.CHAINMAIL_LEGGINGS));
+        chainmailLeggings.shape("ccc", "c c", "c c");
+        chainmailLeggings.setIngredient('c', Material.CHAIN);
+
+        ShapedRecipe chainmailBoots = new ShapedRecipe(new NamespacedKey(this, "chainmailBoots"), applyWatermarkToItem(Material.CHAINMAIL_BOOTS));
+        chainmailBoots.shape("c c", "c c");
+        chainmailBoots.setIngredient('c', Material.CHAIN);
+
+        getServer().addRecipe(chainmailHelmet);
+        getServer().addRecipe(chainmailChest);
+        getServer().addRecipe(chainmailLeggings);
+        getServer().addRecipe(chainmailBoots);
+    }
+
     private void constructMusicRecipes() {
 
         HashMap<Material, Material> listOfDiscRecipes = new HashMap<>();
@@ -97,10 +169,11 @@ public class DomainCrafting extends JavaPlugin {
         listOfDiscRecipes.put(Material.LIME_DYE, Material.MUSIC_DISC_FAR);
         listOfDiscRecipes.put(Material.MAGENTA_DYE, Material.MUSIC_DISC_MALL);
         listOfDiscRecipes.put(Material.PURPLE_DYE, Material.MUSIC_DISC_MELLOHI);
-        listOfDiscRecipes.put(Material.INK_SAC, Material.MUSIC_DISC_STAL);
-        listOfDiscRecipes.put(Material.BONE_MEAL, Material.MUSIC_DISC_STRAD);
+        listOfDiscRecipes.put(Material.BLACK_DYE, Material.MUSIC_DISC_STAL);
+        listOfDiscRecipes.put(Material.WHITE_DYE, Material.MUSIC_DISC_STRAD);
         listOfDiscRecipes.put(Material.CYAN_DYE, Material.MUSIC_DISC_WARD);
-        listOfDiscRecipes.put(Material.LAPIS_LAZULI, Material.MUSIC_DISC_WAIT);
+        listOfDiscRecipes.put(Material.BLUE_DYE, Material.MUSIC_DISC_WAIT);
+        listOfDiscRecipes.put(Material.PORKCHOP, Material.MUSIC_DISC_PIGSTEP);
 
 
 

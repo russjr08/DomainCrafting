@@ -83,6 +83,23 @@ public class DomainCrafting extends JavaPlugin {
         totemOfUndyingRecipe.setIngredient('d', Material.DIAMOND_BLOCK);
         totemOfUndyingRecipe.setIngredient('g', Material.GOLD_INGOT);
 
+        ShapedRecipe copperRailsRecipe = new ShapedRecipe(new NamespacedKey(this, "copperRails"), applyWatermarkToItem(Material.RAIL));
+        copperRailsRecipe.shape("c c", "csc", "c c");
+        copperRailsRecipe.setIngredient('c', Material.COPPER_INGOT);
+        copperRailsRecipe.setIngredient('s', Material.STICK);
+
+        ShapedRecipe copperDetectorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperDetectorRail"), applyWatermarkToItem(Material.DETECTOR_RAIL));
+        copperDetectorRailRecipe.shape("c c", "cpc", "crc");
+        copperDetectorRailRecipe.setIngredient('c', Material.COPPER_INGOT);
+        copperDetectorRailRecipe.setIngredient('p', Material.STONE_PRESSURE_PLATE);
+        copperDetectorRailRecipe.setIngredient('r', Material.REDSTONE);
+
+        ShapedRecipe copperActivatorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperActivatorRail"), applyWatermarkToItem(Material.ACTIVATOR_RAIL));
+        copperActivatorRailRecipe.shape("csc", "crc", "csc");
+        copperActivatorRailRecipe.setIngredient('c', Material.COPPER_INGOT);
+        copperActivatorRailRecipe.setIngredient('r', Material.REDSTONE_TORCH);
+        copperActivatorRailRecipe.setIngredient('s', Material.STICK);
+
 
         addChainMailRecipes();
 
@@ -95,6 +112,9 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(saddleRecipe);
         getServer().addRecipe(pigBannerRecipe);
         getServer().addRecipe(totemOfUndyingRecipe);
+        getServer().addRecipe(copperRailsRecipe);
+        getServer().addRecipe(copperDetectorRailRecipe);
+        getServer().addRecipe(copperActivatorRailRecipe);
         getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));

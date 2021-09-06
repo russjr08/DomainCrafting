@@ -1,4 +1,4 @@
-image: openjdk:11
+image: openjdk:16
 
 stages:
   - build
@@ -18,7 +18,7 @@ build:
   artifacts:
       paths:
         - build/libs/*.jar
-      expire_in: 1 week
+      expire_in: 3 mos
 
 after_script:
   - echo "End of Pipeline"

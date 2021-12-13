@@ -6,13 +6,13 @@
  */
 
 plugins {
-    id "ru.endlesscode.bukkitgradle" version "0.10.0"
+    id "ru.endlesscode.bukkitgradle" version "0.10.1"
 }
 
 
 compileJava {
-    targetCompatibility = JavaVersion.VERSION_16
-    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 sourceSets {
@@ -21,7 +21,7 @@ sourceSets {
 }
 
 static def getDate() {
-    def date = new Date();
+    def date = new Date()
     def formattedDate = date.format("MM-dd-yyyy")
     return formattedDate
 }
@@ -36,7 +36,7 @@ repositories {
 
 bukkit {
 
-    apiVersion = "1.17.1"
+    apiVersion = "1.18"
 
     meta {
         name.set("DomainCrafting")
@@ -58,13 +58,12 @@ bukkit {
         // Set server encoding (flag -Dfile.encoding)
         encoding = "UTF-8"
         // JVM arguments
-        javaArgs = ["-Xmx1G"]
+        javaArgs = ["-Xmx4G"]
         // Bukkit arguments
         bukkitArgs = ["nogui"]
     }
 }
 
 dependencies {
-//    compileOnly(paperApi())
-    compileOnly 'io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT'
+    compileOnly(paperApi())
 }

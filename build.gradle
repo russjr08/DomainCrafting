@@ -52,7 +52,7 @@ bukkit {
         // Accept EULA
         eula = true
         // Set online-mode flag
-        onlineMode = false
+        onlineMode = true
         // Debug mode (listen 5005 port, if you use running from IDEA this option will be ignored)
         debug = true
         // Set server encoding (flag -Dfile.encoding)
@@ -65,5 +65,6 @@ bukkit {
 }
 
 dependencies {
-    compileOnly(paperApi())
+//    compileOnly(paperApi())
+    compileOnly 'io.papermc.paper:paper-api:1.18-R0.1-SNAPSHOT'
 }

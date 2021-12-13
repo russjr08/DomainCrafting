@@ -194,6 +194,7 @@ public class DomainCrafting extends JavaPlugin {
         listOfDiscRecipes.put(Material.CYAN_DYE, Material.MUSIC_DISC_WARD);
         listOfDiscRecipes.put(Material.BLUE_DYE, Material.MUSIC_DISC_WAIT);
         listOfDiscRecipes.put(Material.PORKCHOP, Material.MUSIC_DISC_PIGSTEP);
+        listOfDiscRecipes.put(Material.ENDER_EYE, Material.MUSIC_DISC_OTHERSIDE);
 
 
 
@@ -205,13 +206,13 @@ public class DomainCrafting extends JavaPlugin {
 
             musicRecipe.shape("wew", "ede", "wew").setIngredient('w', Material.OAK_PLANKS).setIngredient('e', Material.EMERALD).setIngredient('d', dye);
 
-            getLogger().info("Registering music recipe: " + disc.toString());
+            getLogger().info("Registering music recipe: " + disc);
             getServer().addRecipe(musicRecipe);
 
-            FurnaceRecipe discSmeltRecipe = new FurnaceRecipe(new NamespacedKey(this, String.format("smelt_%s", disc.toString())),
+            FurnaceRecipe discSmeltRecipe = new FurnaceRecipe(new NamespacedKey(this, String.format("smelt_%s", disc)),
                     new ItemStack(Material.MUSIC_DISC_11), disc, 1F, 600);
 
-            getLogger().info("Registering disc smelting recipe for: " + disc.toString());
+            getLogger().info("Registering disc smelting recipe for: " + disc);
 
             getServer().addRecipe(discSmeltRecipe);
     }

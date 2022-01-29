@@ -20,15 +20,9 @@ sourceSets {
     main.resources.srcDirs = ['src/resources']
 }
 
-static def getDate() {
-    def date = new Date()
-    def formattedDate = date.format("MM-dd-yyyy")
-    return formattedDate
-}
-
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.6.0_" + getDate()
+version "1.6.1"
 
 repositories {
     papermc()

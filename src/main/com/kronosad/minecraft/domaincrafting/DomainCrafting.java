@@ -18,13 +18,22 @@ import java.util.List;
 import java.util.Map;
 
 public class DomainCrafting extends JavaPlugin {
+    private boolean isZombieArrivalPresent = false;
 
     @Override
     public void onEnable() {
 
+        if(getServer().getPluginManager().isPluginEnabled("ZombieArrival")) {
+            getLogger().info("Hello there, ZombieArrival!");
+            getLogger().info("Note: Some features might be disabled for balancing purposes around ZombieArrival.");
+            isZombieArrivalPresent = true;
+        } else {
+            getLogger().info("My friend, ZombieArrival, was not detected.");
+        }
+
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
-        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger()), this);
-        getServer().getPluginManager().registerEvents(new EntityListener(getLogger()), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(getLogger(), this), this);
         addRecipes();
     }
 
@@ -218,6 +227,10 @@ public class DomainCrafting extends JavaPlugin {
     }
 
         getLogger().info("^^^ Over-engineered solution brought to you by yours truly, Russ. You're welcome Michael... :P");
+    }
+
+    public boolean isZombieArrivalPresent() {
+        return isZombieArrivalPresent;
     }
 
 }

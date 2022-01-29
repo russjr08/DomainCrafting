@@ -1,5 +1,6 @@
 package com.kronosad.minecraft.domaincrafting.listeners;
 
+import com.kronosad.minecraft.domaincrafting.DomainCrafting;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.block.Beacon;
@@ -29,7 +30,10 @@ import java.util.logging.Logger;
 
 public class PlayerListener implements Listener {
 
-    public PlayerListener(Logger logger) {
+    private final DomainCrafting plugin;
+
+    public PlayerListener(Logger logger, DomainCrafting plugin) {
+        this.plugin = plugin;
         logger.info("Player Listener Registered!");
     }
 
@@ -131,6 +135,17 @@ public class PlayerListener implements Listener {
             if(lookingAt.getState() instanceof Beacon) {
                 Beacon beacon = (Beacon) lookingAt.getState();
                 if(beacon.getPrimaryEffect() != null || beacon.getSecondaryEffect() != null) {
+                    if(plugin.isZombieArrivalPresent()) {
+                        TextComponent message = new TextComponent("A curse impacts your ability to create this ward...");
+                        message.setItalic(true);
+                        message.setBold(true);
+                        message.setColor(ChatColor.DARK_RED.asBungee());
+                        Player player = (Player) event.getPlayer();
+                        player.sendActionBar(message);
+                        event.getPlayer().playEffect(EntityEffect.SHIELD_BREAK);
+
+                        return;
+                    }
                     if(event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL
                             || event.getPlayer().getWorld().getEnvironment() == World.Environment.NETHER) {
                         TextComponent message = new TextComponent("You've been protected by an ancient artifact.");
@@ -142,6 +157,7 @@ public class PlayerListener implements Listener {
                     } else {
                         TextComponent message = new TextComponent("You do not feel the same sense of protection in this dimension.");
                         message.setItalic(true);
+                        message.setBold(true);
                         message.setColor(ChatColor.DARK_RED.asBungee());
                         Player player = (Player) event.getPlayer();
                         player.sendActionBar(message);

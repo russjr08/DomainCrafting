@@ -1,5 +1,6 @@
 package com.kronosad.minecraft.domaincrafting;
 
+import com.kronosad.minecraft.domaincrafting.listeners.CraftingListener;
 import com.kronosad.minecraft.domaincrafting.listeners.EntityListener;
 import com.kronosad.minecraft.domaincrafting.listeners.PlayerListener;
 import org.bukkit.ChatColor;
@@ -22,9 +23,23 @@ public class DomainCrafting extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        // Custom Names
+        CraftingListener.specialName.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "(Portable) Workbench");
+        CraftingListener.specialName.put(new ItemStack(Material.CHEST), "Backpack");
+
+        // Custom Lores
+        CraftingListener.specialLore.put(new ItemStack(Material.COMPASS), ChatColor.GREEN.toString() + ChatColor.ITALIC + "Homing Device");
+        CraftingListener.specialLore.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "Right Click to Open\n" + ChatColor.RED + ChatColor.ITALIC.toString() + "Sneak-Right Click to Place");
+        CraftingListener.specialLore.put(new ItemStack(Material.CHEST), ChatColor.GREEN + "Right Click to Open\n"
+                + ChatColor.DARK_RED.toString() + ChatColor.ITALIC.toString()
+                + "Warning: Isn't valid if placed onto the ground anymore,\n" + ChatColor.DARK_RED.toString()
+                + ChatColor.ITALIC.toString() +"rename to 'backpack' to restore its use\n"
+                + ChatColor.GOLD.toString() + "Shift-Click to Place");
+
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
-        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger()), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(getLogger()), this);
+        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
         addRecipes();
     }
 

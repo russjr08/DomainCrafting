@@ -100,6 +100,11 @@ public class DomainCrafting extends JavaPlugin {
         copperActivatorRailRecipe.setIngredient('r', Material.REDSTONE_TORCH);
         copperActivatorRailRecipe.setIngredient('s', Material.STICK);
 
+        ShapedRecipe beeNestRecipe = new ShapedRecipe(new NamespacedKey(this, "beenest"), applyWatermarkToItem(Material.BEE_NEST));
+        beeNestRecipe.shape("ccc", "chc", "ccc");
+        beeNestRecipe.setIngredient('c', Material.HONEYCOMB);
+        beeNestRecipe.setIngredient('h', Material.HONEY_BOTTLE);
+
 
         addChainMailRecipes();
 
@@ -115,6 +120,7 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(copperRailsRecipe);
         getServer().addRecipe(copperDetectorRailRecipe);
         getServer().addRecipe(copperActivatorRailRecipe);
+        getServer().addRecipe(beeNestRecipe);
         getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));

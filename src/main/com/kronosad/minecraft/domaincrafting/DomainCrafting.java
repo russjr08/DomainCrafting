@@ -1,5 +1,6 @@
 package com.kronosad.minecraft.domaincrafting;
 
+import com.kronosad.minecraft.domaincrafting.listeners.CraftingListener;
 import com.kronosad.minecraft.domaincrafting.listeners.EntityListener;
 import com.kronosad.minecraft.domaincrafting.listeners.PlayerListener;
 import org.bukkit.ChatColor;
@@ -34,6 +35,23 @@ public class DomainCrafting extends JavaPlugin {
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(getLogger(), this), this);
+        // Custom Names
+        CraftingListener.specialName.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "(Portable) Workbench");
+        CraftingListener.specialName.put(new ItemStack(Material.CHEST), "Backpack");
+
+        // Custom Lores
+        CraftingListener.specialLore.put(new ItemStack(Material.COMPASS), ChatColor.GREEN.toString() + ChatColor.ITALIC + "Homing Device");
+        CraftingListener.specialLore.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "Right Click to Open\n" + ChatColor.RED + ChatColor.ITALIC.toString() + "Sneak-Right Click to Place");
+        CraftingListener.specialLore.put(new ItemStack(Material.CHEST), ChatColor.GREEN + "Right Click to Open\n"
+                + ChatColor.DARK_RED.toString() + ChatColor.ITALIC.toString()
+                + "Warning: Isn't valid if placed onto the ground anymore,\n" + ChatColor.DARK_RED.toString()
+                + ChatColor.ITALIC.toString() +"rename to 'backpack' to restore its use\n"
+                + ChatColor.GOLD.toString() + "Shift-Click to Place");
+
+        getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
+        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(getLogger()), this);
+        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
         addRecipes();
     }
 
@@ -109,6 +127,11 @@ public class DomainCrafting extends JavaPlugin {
         copperActivatorRailRecipe.setIngredient('r', Material.REDSTONE_TORCH);
         copperActivatorRailRecipe.setIngredient('s', Material.STICK);
 
+        ShapedRecipe beeNestRecipe = new ShapedRecipe(new NamespacedKey(this, "beenest"), applyWatermarkToItem(Material.BEE_NEST));
+        beeNestRecipe.shape("ccc", "chc", "ccc");
+        beeNestRecipe.setIngredient('c', Material.HONEYCOMB);
+        beeNestRecipe.setIngredient('h', Material.HONEY_BOTTLE);
+
 
         addChainMailRecipes();
 
@@ -124,6 +147,7 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(copperRailsRecipe);
         getServer().addRecipe(copperDetectorRailRecipe);
         getServer().addRecipe(copperActivatorRailRecipe);
+        getServer().addRecipe(beeNestRecipe);
         getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));

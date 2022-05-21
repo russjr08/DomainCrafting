@@ -35,6 +35,7 @@ public class DomainCrafting extends JavaPlugin {
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(getLogger(), this), this);
+        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
         // Custom Names
         CraftingListener.specialName.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "(Portable) Workbench");
         CraftingListener.specialName.put(new ItemStack(Material.CHEST), "Backpack");
@@ -49,9 +50,6 @@ public class DomainCrafting extends JavaPlugin {
                 + ChatColor.GOLD.toString() + "Shift-Click to Place");
 
         getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
-        getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
-        getServer().getPluginManager().registerEvents(new EntityListener(getLogger()), this);
-        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
         addRecipes();
     }
 

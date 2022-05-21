@@ -31,9 +31,9 @@ public class EntityListener implements Listener {
         PotionEffectType[] beaconEffectTypes = {PotionEffectType.REGENERATION, PotionEffectType.SPEED,
                 PotionEffectType.FAST_DIGGING, PotionEffectType.JUMP, PotionEffectType.INCREASE_DAMAGE};
 
-        if(plugin.isZombieArrivalPresent()) {
-            return; // Do not apply if ZA is present for balancing
-        }
+        //if(plugin.isZombieArrivalPresent()) {
+        //    return; // Do not apply if ZA is present for balancing
+        //}
 
         if(event.getTarget() == null || (!(event.getTarget() instanceof Player) && !((event.getTarget()) instanceof Villager))) {
             return;

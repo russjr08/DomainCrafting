@@ -209,7 +209,7 @@ public class PlayerListener implements Listener {
             if(lookingAt.getState() instanceof Beacon) {
                 Beacon beacon = (Beacon) lookingAt.getState();
                 if(beacon.getPrimaryEffect() != null || beacon.getSecondaryEffect() != null) {
-                    if(plugin.isZombieArrivalPresent()) {
+                    /**if(plugin.isZombieArrivalPresent()) {
                         TextComponent message = new TextComponent("A curse impacts your ability to create this ward...");
                         message.setItalic(true);
                         message.setBold(true);
@@ -219,7 +219,7 @@ public class PlayerListener implements Listener {
                         event.getPlayer().playEffect(EntityEffect.SHIELD_BREAK);
 
                         return;
-                    }
+                    }**/
                     if(event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL
                             || event.getPlayer().getWorld().getEnvironment() == World.Environment.NETHER) {
                         TextComponent message = new TextComponent("You've been protected by an ancient artifact.");

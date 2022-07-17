@@ -1,1 +1,8 @@
 softdepend: [ZombieArrival]
+permissions:
+  domaincrafting.player_tracker:
+    description: Allows players to track the location of other players using a Compass.
+    default: true
+  domaincrafting.time_modify:
+    description: Allows players to modify the World time by holding down right click with a Clock
+    default: op

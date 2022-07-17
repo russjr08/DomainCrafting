@@ -58,15 +58,14 @@ public class PlayerListener implements Listener {
         }
 
         // Player locating via Compass GUI
-        if(event.getAction() == Action.LEFT_CLICK_AIR){
-            if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS &&
-                    event.getPlayer().hasPermission("domaincrafting.player_tracker")){
+        if(event.getAction() == Action.LEFT_CLICK_AIR && event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS){
+            if(event.getPlayer().hasPermission("domaincrafting.player_tracker")){
                 Inventory inv = Bukkit.createInventory(event.getPlayer(), 27,
                         "Player List");
                 inv.setContents(InventoryManagement.getStackOfOnlinePlayers(plugin));
                 event.getPlayer().openInventory(inv);
             } else {
-                event.getPlayer().sendActionBar(Component.text(ChatColor.DARK_RED + "You do not have permission to use this feature!"));
+                event.getPlayer().sendActionBar(Component.text(ChatColor.DARK_RED + "[DC] You do not have permission to use this feature!"));
             }
         }
 

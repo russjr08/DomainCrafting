@@ -6,10 +6,7 @@ import com.kronosad.minecraft.domaincrafting.listeners.PlayerListener;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -130,6 +127,32 @@ public class DomainCrafting extends JavaPlugin {
         beeNestRecipe.setIngredient('c', Material.HONEYCOMB);
         beeNestRecipe.setIngredient('h', Material.HONEY_BOTTLE);
 
+        // TODO: Add Mangrove planks after targeting 1.19
+        RecipeChoice.MaterialChoice plankMaterials = new RecipeChoice.MaterialChoice(
+            Material.ACACIA_PLANKS,
+            Material.BIRCH_PLANKS,
+            Material.CRIMSON_PLANKS,
+            Material.DARK_OAK_PLANKS,
+            Material.JUNGLE_PLANKS,
+            Material.OAK_PLANKS,
+            Material.SPRUCE_PLANKS,
+            Material.WARPED_PLANKS
+        );
+
+        ShapedRecipe copperPistonRecipe = new ShapedRecipe(new NamespacedKey(this, "piston"), applyWatermarkToItem(Material.PISTON));
+        copperPistonRecipe.shape("ppp", "cic", "crc");
+        copperPistonRecipe.setIngredient('p', plankMaterials);
+        copperPistonRecipe.setIngredient('c', Material.COBBLESTONE);
+        copperPistonRecipe.setIngredient('i', Material.COPPER_INGOT);
+        copperPistonRecipe.setIngredient('r', Material.REDSTONE);
+
+        ItemStack cryingObsidianResult = applyWatermarkToItem(Material.CRYING_OBSIDIAN);
+        cryingObsidianResult.setAmount(8);
+
+        ShapedRecipe cryingObsidianRecipe = new ShapedRecipe(new NamespacedKey(this, "crying_obsidian"), cryingObsidianResult);
+        cryingObsidianRecipe.shape("ooo", "oto", "ooo");
+        cryingObsidianRecipe.setIngredient('o', Material.OBSIDIAN);
+        cryingObsidianRecipe.setIngredient('t', Material.GHAST_TEAR);
 
         addChainMailRecipes();
 
@@ -146,6 +169,8 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(copperDetectorRailRecipe);
         getServer().addRecipe(copperActivatorRailRecipe);
         getServer().addRecipe(beeNestRecipe);
+        getServer().addRecipe(copperPistonRecipe);
+        getServer().addRecipe(cryingObsidianRecipe);
         getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
         getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));

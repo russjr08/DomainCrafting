@@ -59,6 +59,8 @@ public class PlayerListener implements Listener {
 
         // Player locating via Compass GUI
         if(event.getAction() == Action.LEFT_CLICK_AIR && event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS){
+            // Disable when interacting with a Lodestone
+            if(event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.LODESTONE) return;
             if(event.getPlayer().hasPermission("domaincrafting.player_tracker")){
                 Inventory inv = Bukkit.createInventory(event.getPlayer(), 27,
                         "Player List");
@@ -110,9 +112,14 @@ public class PlayerListener implements Listener {
 
         if(!event.getPlayer().isSneaking() && (event.getAction() == Action.RIGHT_CLICK_AIR)){
             if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.CRAFTING_TABLE){
+                // Server owners can strip this permission from players, should they choose to not like the functionality
+                if(!event.getPlayer().hasPermission("domaincrafting.utilities.portablebench")) return;
+
                 event.getPlayer().openWorkbench(event.getPlayer().getLocation(), true);
                 event.setCancelled(true);
             }else if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.CHEST && event.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains("Backpack")){
+                if(!event.getPlayer().hasPermission("domaincrafting.utilities.backpack")) return;
+
                 Inventory inv = Bukkit.createInventory(event.getPlayer(), 27, "Portable Chest");
                 if(InventoryManagement.loadInventory(plugin, event.getPlayer()) != null){
                     inv.setContents(InventoryManagement.loadInventory(plugin, event.getPlayer()));

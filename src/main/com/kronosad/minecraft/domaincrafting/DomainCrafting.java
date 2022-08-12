@@ -20,6 +20,7 @@ public class DomainCrafting extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
 
         if(getServer().getPluginManager().isPluginEnabled("ZombieArrival")) {
             getLogger().info("Hello there, ZombieArrival!");
@@ -29,24 +30,17 @@ public class DomainCrafting extends JavaPlugin {
             getLogger().info("My friend, ZombieArrival, was not detected.");
         }
 
-        getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(getLogger(), this), this);
-        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
-        // Custom Names
-        CraftingListener.specialName.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "(Portable) Workbench");
-        CraftingListener.specialName.put(new ItemStack(Material.CHEST), "Backpack");
+        getServer().getPluginManager().registerEvents(new CraftingListener(this.getName().toLowerCase()), this);
 
-        // Custom Lores
+        // Custom Item Lore
         CraftingListener.specialLore.put(new ItemStack(Material.COMPASS), ChatColor.GREEN.toString() + ChatColor.ITALIC + "Homing Device");
-        CraftingListener.specialLore.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "Right Click to Open\n" + ChatColor.RED + ChatColor.ITALIC.toString() + "Sneak-Right Click to Place");
-        CraftingListener.specialLore.put(new ItemStack(Material.CHEST), ChatColor.GREEN + "Right Click to Open\n"
-                + ChatColor.DARK_RED.toString() + ChatColor.ITALIC.toString()
-                + "Warning: Isn't valid if placed onto the ground anymore,\n" + ChatColor.DARK_RED.toString()
-                + ChatColor.ITALIC.toString() +"rename to 'backpack' to restore its use\n"
-                + ChatColor.GOLD.toString() + "Shift-Click to Place");
+        CraftingListener.specialLore.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "Right Click to Open");
 
-        getLogger().info(String.format("DomainCrafting version %s is now starting!", this.getDescription().getVersion()));
+        // TODO: Move this to a custom crafting recipe (and place the lore on that item instead - maybe add back the name)
+        // CraftingListener.specialLore.put(new ItemStack(Material.CHEST), ChatColor.GREEN + "Right Click to Open");
+
         addRecipes();
     }
 

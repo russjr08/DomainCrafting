@@ -1,6 +1,9 @@
 package com.kronosad.minecraft.domaincrafting.listeners;
 
 
+import com.kronosad.minecraft.domaincrafting.DomainCrafting;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,25 +22,13 @@ import java.util.Map;
 
 public class CraftingListener implements Listener {
 
-    public static HashMap<ItemStack, String> specialLore = new HashMap<ItemStack, String>();
-    public static HashMap<ItemStack, String> specialName = new HashMap<ItemStack, String>();
-
     private final String pluginNamespace;
+    private final DomainCrafting plugin;
 
-    public CraftingListener(String pluginNamespace) {
-        this.pluginNamespace = pluginNamespace;
+    public CraftingListener(DomainCrafting plugin) {
+        this.pluginNamespace = plugin.getName().toLowerCase();
+        this.plugin = plugin;
     }
-
-
-    @EventHandler
-    public void craftingEvent(PrepareItemCraftEvent event){
-        if(event.getRecipe() != null) {
-            ItemStack crafted = event.getRecipe().getResult();
-
-            event.getInventory().setResult(getCustomItem(crafted));
-        }
-    }
-
 
     @EventHandler
     public void craftCompletedEvent(CraftItemEvent event) {
@@ -61,38 +52,18 @@ public class CraftingListener implements Listener {
         }
 
         if(shouldPlaySound) {
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, () ->
+                    player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1F, 1F), 5);
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, () ->
+                    player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1F, 1F), 10);
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, () ->
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F), 35);
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, () ->
+                    player.getLocation().getWorld().playEffect(player.getLocation(), Effect.EXTINGUISH, null), 45);
+
         }
 
-    }
-
-    public ItemStack getCustomItem(ItemStack result){
-        for(Map.Entry<ItemStack, String> entry : specialLore.entrySet()){
-
-            ItemStack thisStack = entry.getKey();
-
-            if(result.getType() == thisStack.getType()){
-                ItemMeta meta = result.getItemMeta();
-                ArrayList<String> lores = new ArrayList<String>();
-                String[] linesOfLores = entry.getValue().split("\n");
-                Collections.addAll(lores, linesOfLores);
-
-
-                meta.setLore(lores);
-                result.setItemMeta(meta);
-            }
-        }
-
-        for(Map.Entry<ItemStack, String> entry : specialName.entrySet()){
-            ItemStack thisStack = entry.getKey();
-            if(result.getType() == thisStack.getType()){
-                ItemMeta meta = result.getItemMeta();
-                meta.setDisplayName(entry.getValue());
-                result.setItemMeta(meta);
-
-            }
-        }
-        return result;
     }
 
 }

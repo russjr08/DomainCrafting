@@ -32,14 +32,7 @@ public class DomainCrafting extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlayerListener(getLogger(), this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(getLogger(), this), this);
-        getServer().getPluginManager().registerEvents(new CraftingListener(this.getName().toLowerCase()), this);
-
-        // Custom Item Lore
-        CraftingListener.specialLore.put(new ItemStack(Material.COMPASS), ChatColor.GREEN.toString() + ChatColor.ITALIC + "Homing Device");
-        CraftingListener.specialLore.put(new ItemStack(Material.CRAFTING_TABLE), ChatColor.GREEN + "Right Click to Open");
-
-        // TODO: Move this to a custom crafting recipe (and place the lore on that item instead - maybe add back the name)
-        // CraftingListener.specialLore.put(new ItemStack(Material.CHEST), ChatColor.GREEN + "Right Click to Open");
+        getServer().getPluginManager().registerEvents(new CraftingListener(this), this);
 
         addRecipes();
     }

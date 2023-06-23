@@ -123,6 +123,20 @@ public class DomainCrafting extends JavaPlugin {
         beeNestRecipe.setIngredient('c', Material.HONEYCOMB);
         beeNestRecipe.setIngredient('h', Material.HONEY_BOTTLE);
 
+        ShapedRecipe bundleRecipe = new ShapedRecipe(new NamespacedKey(this, "bundle"), applyWatermarkToItem(Material.BUNDLE));
+        bundleRecipe.shape("shs", "h h", "hhh");
+        bundleRecipe.setIngredient('s', Material.STRING);
+        bundleRecipe.setIngredient('h', Material.RABBIT_HIDE);
+        getLogger().info("WARNING: Bundle is an experimental item. Use at your own risk!");
+
+        ItemStack lilypadResult = applyWatermarkToItem(Material.LILY_PAD);
+        lilypadResult.setAmount(3);
+
+        ShapedRecipe lilypadRecipe = new ShapedRecipe(new NamespacedKey(this, "lilypad"), lilypadResult);
+        lilypadRecipe.shape("sss", "sws", "sss");
+        lilypadRecipe.setIngredient('s', Material.WHEAT_SEEDS);
+        lilypadRecipe.setIngredient('w', Material.WATER_BUCKET);
+
         RecipeChoice.MaterialChoice plankMaterials = new RecipeChoice.MaterialChoice(
             Material.ACACIA_PLANKS,
             Material.BIRCH_PLANKS,
@@ -178,6 +192,8 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_SPAWN_EGG));
         getServer().addRecipe(getFishInBucketRecipe(Material.PUFFERFISH, Material.PUFFERFISH_SPAWN_EGG));
         getServer().addRecipe(copperHopperRecipe);
+        getServer().addRecipe(bundleRecipe);
+        getServer().addRecipe(lilypadRecipe);
 
         constructMusicRecipes();
 

@@ -143,6 +143,11 @@ public class DomainCrafting extends JavaPlugin {
         copperPistonRecipe.setIngredient('i', Material.COPPER_INGOT);
         copperPistonRecipe.setIngredient('r', Material.REDSTONE);
 
+        ShapedRecipe copperHopperRecipe = new ShapedRecipe(new NamespacedKey(this, "hopper"), applyWatermarkToItem(Material.HOPPER));
+        copperHopperRecipe.shape("c c", "cbc", " c ");
+        copperHopperRecipe.setIngredient('c', Material.COPPER_INGOT);
+        copperHopperRecipe.setIngredient('b', Material.CHEST);
+
         ItemStack cryingObsidianResult = applyWatermarkToItem(Material.CRYING_OBSIDIAN);
         cryingObsidianResult.setAmount(8);
 
@@ -168,10 +173,11 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(beeNestRecipe);
         getServer().addRecipe(copperPistonRecipe);
         getServer().addRecipe(cryingObsidianRecipe);
-        getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_BUCKET));
-        getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_BUCKET));
-        getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_BUCKET));
-        getServer().addRecipe(getFishInBucketRecipe(Material.PUFFERFISH, Material.PUFFERFISH_BUCKET));
+        getServer().addRecipe(getFishInBucketRecipe(Material.COD, Material.COD_SPAWN_EGG));
+        getServer().addRecipe(getFishInBucketRecipe(Material.TROPICAL_FISH, Material.TROPICAL_FISH_SPAWN_EGG));
+        getServer().addRecipe(getFishInBucketRecipe(Material.SALMON, Material.SALMON_SPAWN_EGG));
+        getServer().addRecipe(getFishInBucketRecipe(Material.PUFFERFISH, Material.PUFFERFISH_SPAWN_EGG));
+        getServer().addRecipe(copperHopperRecipe);
 
         constructMusicRecipes();
 

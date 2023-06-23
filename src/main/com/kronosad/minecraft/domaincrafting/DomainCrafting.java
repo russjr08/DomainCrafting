@@ -92,18 +92,27 @@ public class DomainCrafting extends JavaPlugin {
         totemOfUndyingRecipe.setIngredient('d', Material.DIAMOND_BLOCK);
         totemOfUndyingRecipe.setIngredient('g', Material.GOLD_INGOT);
 
-        ShapedRecipe copperRailsRecipe = new ShapedRecipe(new NamespacedKey(this, "copperRails"), applyWatermarkToItem(Material.RAIL));
+        ItemStack railResult = applyWatermarkToItem(Material.RAIL);
+        railResult.setAmount(16);
+
+        ShapedRecipe copperRailsRecipe = new ShapedRecipe(new NamespacedKey(this, "copperRails"), railResult);
         copperRailsRecipe.shape("c c", "csc", "c c");
         copperRailsRecipe.setIngredient('c', Material.COPPER_INGOT);
         copperRailsRecipe.setIngredient('s', Material.STICK);
 
-        ShapedRecipe copperDetectorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperDetectorRail"), applyWatermarkToItem(Material.DETECTOR_RAIL));
+        ItemStack detectorRailResult = applyWatermarkToItem(Material.DETECTOR_RAIL);
+        detectorRailResult.setAmount(6);
+
+        ShapedRecipe copperDetectorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperDetectorRail"), detectorRailResult);
         copperDetectorRailRecipe.shape("c c", "cpc", "crc");
         copperDetectorRailRecipe.setIngredient('c', Material.COPPER_INGOT);
         copperDetectorRailRecipe.setIngredient('p', Material.STONE_PRESSURE_PLATE);
         copperDetectorRailRecipe.setIngredient('r', Material.REDSTONE);
 
-        ShapedRecipe copperActivatorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperActivatorRail"), applyWatermarkToItem(Material.ACTIVATOR_RAIL));
+        ItemStack activatorRailResult = applyWatermarkToItem(Material.ACTIVATOR_RAIL);
+        activatorRailResult.setAmount(6);
+
+        ShapedRecipe copperActivatorRailRecipe = new ShapedRecipe(new NamespacedKey(this, "copperActivatorRail"), activatorRailResult);
         copperActivatorRailRecipe.shape("csc", "crc", "csc");
         copperActivatorRailRecipe.setIngredient('c', Material.COPPER_INGOT);
         copperActivatorRailRecipe.setIngredient('r', Material.REDSTONE_TORCH);
@@ -114,7 +123,6 @@ public class DomainCrafting extends JavaPlugin {
         beeNestRecipe.setIngredient('c', Material.HONEYCOMB);
         beeNestRecipe.setIngredient('h', Material.HONEY_BOTTLE);
 
-        // TODO: Add Mangrove planks after targeting 1.19
         RecipeChoice.MaterialChoice plankMaterials = new RecipeChoice.MaterialChoice(
             Material.ACACIA_PLANKS,
             Material.BIRCH_PLANKS,
@@ -123,7 +131,9 @@ public class DomainCrafting extends JavaPlugin {
             Material.JUNGLE_PLANKS,
             Material.OAK_PLANKS,
             Material.SPRUCE_PLANKS,
-            Material.WARPED_PLANKS
+            Material.WARPED_PLANKS,
+            Material.MANGROVE_PLANKS,
+            Material.CHERRY_PLANKS
         );
 
         ShapedRecipe copperPistonRecipe = new ShapedRecipe(new NamespacedKey(this, "piston"), applyWatermarkToItem(Material.PISTON));
@@ -238,6 +248,7 @@ public class DomainCrafting extends JavaPlugin {
         listOfDiscRecipes.put(Material.BLUE_DYE, Material.MUSIC_DISC_WAIT);
         listOfDiscRecipes.put(Material.PORKCHOP, Material.MUSIC_DISC_PIGSTEP);
         listOfDiscRecipes.put(Material.ENDER_EYE, Material.MUSIC_DISC_OTHERSIDE);
+        listOfDiscRecipes.put(Material.BRUSH, Material.MUSIC_DISC_RELIC);
 
 
 

@@ -128,6 +128,7 @@ public class DomainCrafting extends JavaPlugin {
         bundleRecipe.setIngredient('s', Material.STRING);
         bundleRecipe.setIngredient('h', Material.RABBIT_HIDE);
         getLogger().info("WARNING: Bundle is an experimental item. Use at your own risk!");
+        // Remove this once Mojang figures it out
 
         ItemStack lilypadResult = applyWatermarkToItem(Material.LILY_PAD);
         lilypadResult.setAmount(3);
@@ -272,8 +273,126 @@ public class DomainCrafting extends JavaPlugin {
                 .addIngredient(Material.BRICK)
                         .addIngredient(Material.SNORT_POTTERY_SHERD);
 
-        getLogger().info("Painstakingly adding Pottery Sherd Duplication...")
+        getLogger().info("Painstakingly adding Pottery Sherd Duplication...");
 
+        ShapedRecipe upgradeTemplateRecipe = new ShapedRecipe(new NamespacedKey(this, "upgradeTemplate"), applyWatermarkToItem(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE));
+        upgradeTemplateRecipe.shape("dxd", "dbd", "dmd");
+        upgradeTemplateRecipe.setIngredient('d', Material.DIAMOND);
+        upgradeTemplateRecipe.setIngredient('b', Material.BOOK);
+        upgradeTemplateRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        upgradeTemplateRecipe.setIngredient('x', Material.ANCIENT_DEBRIS);
+
+        ShapedRecipe raiserTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "raiserTrim"), applyWatermarkToItem(Material.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE));
+        raiserTrimRecipe.shape("dxd", "dbd", "dmd");
+        raiserTrimRecipe.setIngredient('d', Material.DIAMOND);
+        raiserTrimRecipe.setIngredient('b', Material.BOOK);
+        raiserTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        raiserTrimRecipe.setIngredient('x', Material.WITHER_ROSE);
+
+        ShapedRecipe silenceTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "silenceTrim"), applyWatermarkToItem(Material.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE));
+        silenceTrimRecipe.shape("dxd", "dbd", "dmd");
+        silenceTrimRecipe.setIngredient('d', Material.DIAMOND);
+        silenceTrimRecipe.setIngredient('b', Material.BOOK);
+        silenceTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        silenceTrimRecipe.setIngredient('x', Material.SCULK);
+
+        ShapedRecipe vexTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "vexTrim"), applyWatermarkToItem(Material.VEX_ARMOR_TRIM_SMITHING_TEMPLATE));
+        vexTrimRecipe.shape("dxd", "dbd", "dmd");
+        vexTrimRecipe.setIngredient('d', Material.DIAMOND);
+        vexTrimRecipe.setIngredient('b', Material.BOOK);
+        vexTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        vexTrimRecipe.setIngredient('x', Material.EMERALD_BLOCK);
+
+        ShapedRecipe duneTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "duneTrim"), applyWatermarkToItem(Material.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE));
+        duneTrimRecipe.shape("dxd", "dbd", "dmd");
+        duneTrimRecipe.setIngredient('d', Material.DIAMOND);
+        duneTrimRecipe.setIngredient('b', Material.BOOK);
+        duneTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        duneTrimRecipe.setIngredient('x', Material.CHISELED_SANDSTONE);
+
+        ShapedRecipe coastTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "coastTrim"), applyWatermarkToItem(Material.COAST_ARMOR_TRIM_SMITHING_TEMPLATE));
+        coastTrimRecipe.shape("dxd", "dbd", "dmd");
+        coastTrimRecipe.setIngredient('d', Material.DIAMOND);
+        coastTrimRecipe.setIngredient('b', Material.BOOK);
+        coastTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        coastTrimRecipe.setIngredient('x', Material.DRIED_KELP_BLOCK);
+
+        ShapedRecipe ribTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "ribTrim"), applyWatermarkToItem(Material.RIB_ARMOR_TRIM_SMITHING_TEMPLATE));
+        ribTrimRecipe.shape("dxd", "dbd", "dmd");
+        ribTrimRecipe.setIngredient('d', Material.DIAMOND);
+        ribTrimRecipe.setIngredient('b', Material.BOOK);
+        ribTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        ribTrimRecipe.setIngredient('x', Material.BONE_BLOCK);
+
+        ShapedRecipe sentryTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "sentryTrim"), applyWatermarkToItem(Material.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE));
+        sentryTrimRecipe.shape("dxd", "dbd", "dmd");
+        sentryTrimRecipe.setIngredient('d', Material.DIAMOND);
+        sentryTrimRecipe.setIngredient('b', Material.BOOK);
+        sentryTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        sentryTrimRecipe.setIngredient('x', Material.SHIELD);
+
+        ShapedRecipe wayfinderTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "wayfinderTrim"), applyWatermarkToItem(Material.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE));
+        wayfinderTrimRecipe.shape("dxd", "dbd", "dmd");
+        wayfinderTrimRecipe.setIngredient('d', Material.DIAMOND);
+        wayfinderTrimRecipe.setIngredient('b', Material.BOOK);
+        wayfinderTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        wayfinderTrimRecipe.setIngredient('x', Material.COARSE_DIRT);
+
+        ShapedRecipe tideTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "tideTrim"), applyWatermarkToItem(Material.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE));
+        tideTrimRecipe.shape("dxd", "dbd", "dmd");
+        tideTrimRecipe.setIngredient('d', Material.DIAMOND);
+        tideTrimRecipe.setIngredient('b', Material.BOOK);
+        tideTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        tideTrimRecipe.setIngredient('x', Material.DARK_PRISMARINE);
+
+        ShapedRecipe eyeTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "eyeTrim"), applyWatermarkToItem(Material.EYE_ARMOR_TRIM_SMITHING_TEMPLATE));
+        eyeTrimRecipe.shape("dxd", "dbd", "dmd");
+        eyeTrimRecipe.setIngredient('d', Material.DIAMOND);
+        eyeTrimRecipe.setIngredient('b', Material.BOOK);
+        eyeTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        eyeTrimRecipe.setIngredient('x', Material.ENDER_EYE);
+
+        ShapedRecipe hostTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "hostTrim"), applyWatermarkToItem(Material.HOST_ARMOR_TRIM_SMITHING_TEMPLATE));
+        hostTrimRecipe.shape("dxd", "dbd", "dmd");
+        hostTrimRecipe.setIngredient('d', Material.DIAMOND);
+        hostTrimRecipe.setIngredient('b', Material.BOOK);
+        hostTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        hostTrimRecipe.setIngredient('x', Material.MYCELIUM);
+
+        ShapedRecipe spireTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "spireTrim"), applyWatermarkToItem(Material.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE));
+        spireTrimRecipe.shape("dxd", "dbd", "dmd");
+        spireTrimRecipe.setIngredient('d', Material.DIAMOND);
+        spireTrimRecipe.setIngredient('b', Material.BOOK);
+        spireTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        spireTrimRecipe.setIngredient('x', Material.CHORUS_FRUIT);
+
+        ShapedRecipe wardTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "wardTrim"), applyWatermarkToItem(Material.WARD_ARMOR_TRIM_SMITHING_TEMPLATE));
+        wardTrimRecipe.shape("dxd", "dbd", "dmd");
+        wardTrimRecipe.setIngredient('d', Material.DIAMOND);
+        wardTrimRecipe.setIngredient('b', Material.BOOK);
+        wardTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        wardTrimRecipe.setIngredient('x', Material.ECHO_SHARD);
+
+        ShapedRecipe wildTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "wildTrim"), applyWatermarkToItem(Material.WILD_ARMOR_TRIM_SMITHING_TEMPLATE));
+        wildTrimRecipe.shape("dxd", "dbd", "dmd");
+        wildTrimRecipe.setIngredient('d', Material.DIAMOND);
+        wildTrimRecipe.setIngredient('b', Material.BOOK);
+        wildTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        wildTrimRecipe.setIngredient('x', Material.COOKIE);
+
+        ShapedRecipe snoutTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "snoutTrim"), applyWatermarkToItem(Material.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE));
+        snoutTrimRecipe.shape("dxd", "dbd", "dmd");
+        snoutTrimRecipe.setIngredient('d', Material.DIAMOND);
+        snoutTrimRecipe.setIngredient('b', Material.BOOK);
+        snoutTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        snoutTrimRecipe.setIngredient('x', Material.PIGLIN_BANNER_PATTERN);
+
+        ShapedRecipe shaperTrimRecipe = new ShapedRecipe(new NamespacedKey(this, "shaperTrim"), applyWatermarkToItem(Material.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE));
+        shaperTrimRecipe.shape("dxd", "dbd", "dmd");
+        shaperTrimRecipe.setIngredient('d', Material.DIAMOND);
+        shaperTrimRecipe.setIngredient('b', Material.BOOK);
+        shaperTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
+        shaperTrimRecipe.setIngredient('x', Material.BLUE_ICE);
 
         // Register recipes
         getServer().addRecipe(nametagRecipe);
@@ -317,6 +436,23 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(shelterSherdRecipe);
         getServer().addRecipe(skullSherdRecipe);
         getServer().addRecipe(snortSherdRecipe);
+        getServer().addRecipe(upgradeTemplateRecipe);
+        getServer().addRecipe(raiserTrimRecipe);
+        getServer().addRecipe(silenceTrimRecipe);
+        getServer().addRecipe(vexTrimRecipe);
+        getServer().addRecipe(duneTrimRecipe);
+        getServer().addRecipe(coastTrimRecipe);
+        getServer().addRecipe(ribTrimRecipe);
+        getServer().addRecipe(sentryTrimRecipe);
+        getServer().addRecipe(wayfinderTrimRecipe);
+        getServer().addRecipe(tideTrimRecipe);
+        getServer().addRecipe(eyeTrimRecipe);
+        getServer().addRecipe(hostTrimRecipe);
+        getServer().addRecipe(spireTrimRecipe);
+        getServer().addRecipe(wardTrimRecipe);
+        getServer().addRecipe(wildTrimRecipe);
+        getServer().addRecipe(snoutTrimRecipe);
+        getServer().addRecipe(shaperTrimRecipe);
 
         constructMusicRecipes();
 

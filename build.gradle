@@ -36,7 +36,7 @@ bukkit {
         name.set("DomainCrafting")
         main.set("com.kronosad.minecraft.domaincrafting.DomainCrafting")
         description.set("Custom Crafting for DomainCraft")
-        authors.set(["russjr08"])
+        authors.set(["russjr08", "michaelthesad"])
 
     }
 

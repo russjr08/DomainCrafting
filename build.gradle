@@ -22,7 +22,7 @@ sourceSets {
 
 group "com.kronosad.minecraft"
 description "Custom Crafting for DomainCraft"
-version "1.7.4"
+version "1.7.5"
 
 repositories {
     papermc()

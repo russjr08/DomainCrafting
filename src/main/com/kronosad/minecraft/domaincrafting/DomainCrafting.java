@@ -172,6 +172,109 @@ public class DomainCrafting extends JavaPlugin {
 
         addChainMailRecipes();
 
+        ShapelessRecipe anglerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "anglerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.ANGLER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.ANGLER_POTTERY_SHERD);
+
+        ShapelessRecipe archerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "archerySherd"),
+                applyWatermarkToItem(new ItemStack(Material.ARCHER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.ARCHER_POTTERY_SHERD);
+
+        ShapelessRecipe armsUpSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "armsUpSherd"),
+                applyWatermarkToItem(new ItemStack(Material.ARMS_UP_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.ARMS_UP_POTTERY_SHERD);
+
+        ShapelessRecipe bladeSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "bladeSherd"),
+                applyWatermarkToItem(new ItemStack(Material.BLADE_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.BLADE_POTTERY_SHERD);
+
+        ShapelessRecipe brewerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "brewerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.BREWER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.BREWER_POTTERY_SHERD);
+
+        ShapelessRecipe burnSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "burnSherd"),
+                applyWatermarkToItem(new ItemStack(Material.BURN_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.BURN_POTTERY_SHERD);
+
+        ShapelessRecipe dangerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "dangerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.DANGER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.DANGER_POTTERY_SHERD);
+
+        ShapelessRecipe explorerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "explorerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.EXPLORER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.EXPLORER_POTTERY_SHERD);
+
+        ShapelessRecipe friendSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "friendSherd"),
+                applyWatermarkToItem(new ItemStack(Material.FRIEND_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.FRIEND_POTTERY_SHERD);
+
+        ShapelessRecipe heartSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "heartSherd"),
+                applyWatermarkToItem(new ItemStack(Material.HEART_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.HEART_POTTERY_SHERD);
+
+        ShapelessRecipe heartbreakSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "heartbreakSherd"),
+                applyWatermarkToItem(new ItemStack(Material.HEARTBREAK_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.HEARTBREAK_POTTERY_SHERD);
+
+        ShapelessRecipe howlSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "howlSherd"),
+                applyWatermarkToItem(new ItemStack(Material.HOWL_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.HOWL_POTTERY_SHERD);
+
+        ShapelessRecipe minerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "minerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.MINER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.MINER_POTTERY_SHERD);
+
+        ShapelessRecipe mournerSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "mournerSherd"),
+                applyWatermarkToItem(new ItemStack(Material.MOURNER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.MOURNER_POTTERY_SHERD);
+
+        ShapelessRecipe plentySherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "plentySherd"),
+                applyWatermarkToItem(new ItemStack(Material.PLENTY_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.PLENTY_POTTERY_SHERD);
+
+        ShapelessRecipe prizeSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "prizeSherd"),
+                applyWatermarkToItem(new ItemStack(Material.PRIZE_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.PRIZE_POTTERY_SHERD);
+
+        ShapelessRecipe sheafSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "sheafSherd"),
+                applyWatermarkToItem(new ItemStack(Material.SHEAF_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                .addIngredient(Material.SHEAF_POTTERY_SHERD);
+
+        ShapelessRecipe shelterSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "shelterSherd"),
+                applyWatermarkToItem(new ItemStack(Material.SHELTER_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                        .addIngredient(Material.SHELTER_POTTERY_SHERD);
+
+        ShapelessRecipe skullSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "skullSherd"),
+                applyWatermarkToItem(new ItemStack(Material.SKULL_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                        .addIngredient(Material.SKULL_POTTERY_SHERD);
+
+        ShapelessRecipe snortSherdRecipe = new ShapelessRecipe(new NamespacedKey(this, "snortSherd"),
+                applyWatermarkToItem(new ItemStack(Material.SNORT_POTTERY_SHERD, 2)))
+                .addIngredient(Material.BRICK)
+                        .addIngredient(Material.SNORT_POTTERY_SHERD);
+
+        getLogger().info("Painstakingly adding Pottery Sherd Duplication...")
+
+
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
@@ -194,6 +297,26 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(copperHopperRecipe);
         getServer().addRecipe(bundleRecipe);
         getServer().addRecipe(lilypadRecipe);
+        getServer().addRecipe(anglerSherdRecipe);
+        getServer().addRecipe(archerSherdRecipe);
+        getServer().addRecipe(armsUpSherdRecipe);
+        getServer().addRecipe(bladeSherdRecipe);
+        getServer().addRecipe(brewerSherdRecipe);
+        getServer().addRecipe(burnSherdRecipe);
+        getServer().addRecipe(dangerSherdRecipe);
+        getServer().addRecipe(explorerSherdRecipe);
+        getServer().addRecipe(friendSherdRecipe);
+        getServer().addRecipe(heartSherdRecipe);
+        getServer().addRecipe(heartbreakSherdRecipe);
+        getServer().addRecipe(howlSherdRecipe);
+        getServer().addRecipe(minerSherdRecipe);
+        getServer().addRecipe(mournerSherdRecipe);
+        getServer().addRecipe(plentySherdRecipe);
+        getServer().addRecipe(prizeSherdRecipe);
+        getServer().addRecipe(sheafSherdRecipe);
+        getServer().addRecipe(shelterSherdRecipe);
+        getServer().addRecipe(skullSherdRecipe);
+        getServer().addRecipe(snortSherdRecipe);
 
         constructMusicRecipes();
 

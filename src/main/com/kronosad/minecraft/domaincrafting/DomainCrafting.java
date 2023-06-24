@@ -394,6 +394,18 @@ public class DomainCrafting extends JavaPlugin {
         shaperTrimRecipe.setIngredient('m', Material.DIAMOND_BLOCK);
         shaperTrimRecipe.setIngredient('x', Material.BLUE_ICE);
 
+        ItemStack backpack = new ItemStack(Material.CHEST, 1);
+        if(backpack.getItemMeta() != null) {
+            ItemMeta backpackMeta = backpack.getItemMeta();
+            backpackMeta.setDisplayName("Backpack");
+            backpack.setItemMeta(backpackMeta);
+        }
+        applyWatermarkToItem(backpack);
+        ShapedRecipe backpackRecipe = new ShapedRecipe(new NamespacedKey(this, "backpack"), backpack);
+        backpackRecipe.shape("s s", "scs", "s s");
+        backpackRecipe.setIngredient('s', Material.STRING);
+        backpackRecipe.setIngredient('c', Material.CHEST);
+
         // Register recipes
         getServer().addRecipe(nametagRecipe);
         getServer().addRecipe(cobwebRecipe);
@@ -453,6 +465,7 @@ public class DomainCrafting extends JavaPlugin {
         getServer().addRecipe(wildTrimRecipe);
         getServer().addRecipe(snoutTrimRecipe);
         getServer().addRecipe(shaperTrimRecipe);
+        getServer().addRecipe(backpackRecipe);
 
         constructMusicRecipes();
 
